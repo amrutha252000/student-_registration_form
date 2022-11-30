@@ -8,6 +8,7 @@ import {
   Routes,
   Link
 } from "react-router-dom";
+import SignupSuccess from './signupSuccess';
 function App() {
   return (
     <div className="App">
@@ -16,6 +17,7 @@ function App() {
   <Route path="/" element={<Signin />}/>
   <Route path="/signin" element={<Signin />} />
   <Route path="/login" element={<Login />} />
+  <Route path="/signup_success" element={<SignupSuccess />} />
 </Routes>
 </Router>
           
