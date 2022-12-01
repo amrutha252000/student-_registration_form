@@ -9,6 +9,7 @@ import {
   Link
 } from "react-router-dom";
 import SignupSuccess from './signupSuccess';
+import LoginSuccess from './loginSuccess';
 function App() {
   return (
     <div className="App">
@@ -18,6 +19,7 @@ function App() {
   <Route path="/signin" element={<Signin />} />
   <Route path="/login" element={<Login />} />
   <Route path="/signup_success" element={<SignupSuccess />} />
+  <Route path="/login_success" element={<LoginSuccess />} />
 </Routes>
 </Router>
           
