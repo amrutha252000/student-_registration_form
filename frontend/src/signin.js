@@ -14,6 +14,8 @@ function Signin()
     const [gender, setGender] = React.useState('');
     const [phno, setPhno] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [isAlert, setIsAlert ] = React.useState(false);
+    const [errMsg, setErrMsg] = React.useState('');
     const navigate = useNavigate();
     
     const Submit_form = (event) => {
@@ -31,21 +33,25 @@ function Signin()
         })
         .catch((err) =>{
             console.log(err);
-            if(err.status==400)
-                window.alert(err.response.message);
+            console.log(err.response.status);
+            if(err.response.status==400){
+                setIsAlert(true)
+                setErrMsg(err.response.data.message)
+            } 
                 
-    //             <Alert variant="danger" dismissible>
-    //     <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-    //     <p>
-    //       Change this and that and try again. Duis mollis, est non commodo
-    //       luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-    //       Cras mattis consectetur purus sit amet fermentum.
-    //     </p>
-    //   </Alert>
+    
         });
-    }
+    } 
     return (
         <div className='design'>
+        {isAlert?
+            <Alert variant="danger" dismissible onClose={() => {setIsAlert(false)}}>
+            <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+            <p>
+            {errMsg}
+            </p>
+            </Alert>:<div></div>
+        }
         <h1> Sign-IN</h1>
         <form onSubmit={Submit_form}  className="formdesign">
             <div className="field1">
