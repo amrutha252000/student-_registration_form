@@ -7,6 +7,31 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.post('/login', (req, res, next) => {
+  Student.findOne({techid:req.body.techid},(err, currStudent) =>{
+    if(err){
+      console.log(err);
+      res.status(400).send();
+      return;
+    }
+    if(currStudent == null){
+      console.log(err);
+      res.status(400).send({
+        message:"student doesn't exist"
+      });
+    }
+    else{
+      if(req.body.password==currStudent.password)
+        res.status(200).send()
+      else{
+        res.status(400).send({
+          message:"Password is incorrect"
+        })
+      }
+    }
+  })
+})
+
 router.post('/signup', function(req, res, next) {
   Student.countDocuments({email:req.body.email},(err, count)=>{
     if(err){
